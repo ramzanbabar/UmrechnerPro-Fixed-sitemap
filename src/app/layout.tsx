@@ -5,6 +5,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
 import { ThemeProvider } from "next-themes";
+import Script from "next/script"; // ✅ ADDED
+
+const GA_ID = "G-H9YT158PSG"; // ✅ YOUR GA ID
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -57,9 +60,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    // Add verification codes when available
-  },
+  verification: {},
   alternates: {
     canonical: 'https://umrechnerpro.de',
     languages: {
@@ -84,7 +85,22 @@ export default function RootLayout({
         <meta name="geo.region" content="DE" />
         <meta name="geo.region" content="AT" />
         <meta name="geo.region" content="CH" />
+
+        {/* ✅ GOOGLE ANALYTICS */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}
+        </Script>
       </head>
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}
       >
