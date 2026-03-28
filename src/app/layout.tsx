@@ -5,9 +5,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
 import { ThemeProvider } from "next-themes";
-import Script from "next/script"; // ✅ ADDED
+import Script from "next/script"; // ✅ correct placement
 
-const GA_ID = "G-H9YT158PSG"; // ✅ YOUR GA ID
+const GA_ID = "G-H9YT158PSG";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,34 +20,47 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://umrechnerpro.de'),
+  metadataBase: new URL("https://umrechnerpro.de"),
   title: {
-    default: 'UmrechnerPro - Kostenlose Einheiten-Umrechner für DACH',
-    template: '%s | UmrechnerPro',
+    default: "UmrechnerPro - Kostenlose Einheiten-Umrechner für DACH",
+    template: "%s | UmrechnerPro",
   },
-  description: 'Kostenlose Einheiten-Umrechner für Länge, Gewicht, Temperatur, Fläche, Volumen und mehr. Präzise Umrechnungen für Deutschland, Österreich und die Schweiz.',
-  keywords: ['Umrechner', 'Einheiten umrechnen', 'Einheitenrechner', 'Umrechnung', 'Umrechnen', 'Umrechnungstabelle', 'Längenumrechner', 'Gewichtsumrechner', 'Temperatur umrechnen'],
-  authors: [{ name: 'UmrechnerPro' }],
-  creator: 'UmrechnerPro',
-  publisher: 'UmrechnerPro',
+  description:
+    "Kostenlose Einheiten-Umrechner für Länge, Gewicht, Temperatur, Fläche, Volumen und mehr. Präzise Umrechnungen für Deutschland, Österreich und die Schweiz.",
+  keywords: [
+    "Umrechner",
+    "Einheiten umrechnen",
+    "Einheitenrechner",
+    "Umrechnung",
+    "Umrechnen",
+    "Umrechnungstabelle",
+    "Längenumrechner",
+    "Gewichtsumrechner",
+    "Temperatur umrechnen",
+  ],
+  authors: [{ name: "UmrechnerPro" }],
+  creator: "UmrechnerPro",
+  publisher: "UmrechnerPro",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   openGraph: {
-    type: 'website',
-    locale: 'de_DE',
-    alternateLocale: ['de_AT', 'de_CH'],
-    url: 'https://umrechnerpro.de',
-    siteName: 'UmrechnerPro',
-    title: 'UmrechnerPro - Kostenlose Einheiten-Umrechner für DACH',
-    description: 'Kostenlose Einheiten-Umrechner für Länge, Gewicht, Temperatur, Fläche, Volumen und mehr. Präzise Umrechnungen für Deutschland, Österreich und die Schweiz.',
+    type: "website",
+    locale: "de_DE",
+    alternateLocale: ["de_AT", "de_CH"],
+    url: "https://umrechnerpro.de",
+    siteName: "UmrechnerPro",
+    title: "UmrechnerPro - Kostenlose Einheiten-Umrechner für DACH",
+    description:
+      "Kostenlose Einheiten-Umrechner für Länge, Gewicht, Temperatur, Fläche, Volumen und mehr.",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'UmrechnerPro - Kostenlose Einheiten-Umrechner',
-    description: 'Kostenlose Einheiten-Umrechner für Länge, Gewicht, Temperatur und mehr.',
+    card: "summary_large_image",
+    title: "UmrechnerPro - Kostenlose Einheiten-Umrechner",
+    description:
+      "Kostenlose Einheiten-Umrechner für Länge, Gewicht, Temperatur und mehr.",
   },
   robots: {
     index: true,
@@ -55,19 +68,19 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   verification: {},
   alternates: {
-    canonical: 'https://umrechnerpro.de',
+    canonical: "https://umrechnerpro.de",
     languages: {
-      'de-DE': 'https://umrechnerpro.de',
-      'de-AT': 'https://umrechnerpro.de',
-      'de-CH': 'https://umrechnerpro.de',
-      'de': 'https://umrechnerpro.de',
+      "de-DE": "https://umrechnerpro.de",
+      "de-AT": "https://umrechnerpro.de",
+      "de-CH": "https://umrechnerpro.de",
+      de: "https://umrechnerpro.de",
     },
   },
 };
@@ -79,35 +92,38 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" suppressHydrationWarning>
-<head>
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="/logo.svg" />
+      <head>
+        {/* Icons */}
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/logo.svg" />
 
-  {/* ✅ GOOGLE ANALYTICS */}
-  <Script
-    src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-    strategy="afterInteractive"
-  />
-  <Script id="google-analytics" strategy="afterInteractive">
-    {`
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '${GA_ID}');
-    `}
-  </Script>
-
-{/* ✅ GOOGLE ADSENSE */}
-<script
-  async
-  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737091335491829"
-  crossOrigin="anonymous"
-></script>
-</head>
+        {/* ✅ GOOGLE ADSENSE (HEAD ONLY) */}
+        <Script
+          id="adsense-script"
+          strategy="beforeInteractive"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737091335491829"
+          crossOrigin="anonymous"
+        />
+      </head>
 
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}
       >
+        {/* ✅ GOOGLE ANALYTICS */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}
+        </Script>
+
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -115,9 +131,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="flex-1">
-            {children}
-          </main>
+          <main className="flex-1">{children}</main>
           <Footer />
           <CookieConsent />
         </ThemeProvider>
