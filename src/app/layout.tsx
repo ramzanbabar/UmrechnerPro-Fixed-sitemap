@@ -93,17 +93,20 @@ export default function RootLayout({
   return (
     <html lang="de" suppressHydrationWarning>
       <head>
+        {/* Google AdSense Meta Verification */}
+        <meta name="google-adsense-account" content="ca-pub-6737091335491829" />
+        
+        {/* Google AdSense Script */}
+        <script 
+          async 
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737091335491829"
+          crossOrigin="anonymous"
+        ></script>
         {/* Icons */}
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/logo.svg" />
 
-        {/* ✅ GOOGLE ADSENSE (HEAD ONLY) */}
-        <Script
-          id="adsense-script"
-          strategy="beforeInteractive"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737091335491829"
-          crossOrigin="anonymous"
-        />
+      
       </head>
 
       <body
